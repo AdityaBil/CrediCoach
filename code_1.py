@@ -17,7 +17,6 @@ from sklearn.svm import SVC
 import os
 import re
 
-# Optional GenAI import — use real `genai` if installed, otherwise fallback
 try:
     import genai
     _GENAI_AVAILABLE = True
@@ -101,7 +100,7 @@ Stack = StackingRegressor(
 
 Stack.fit(X_train, y_train)
 
-# Fit a lightweight MLP regressor
+#MLP
 mlp_model.fit(X_train, y_train)
 
 pred1 = Stack.predict(X_test)
@@ -166,7 +165,7 @@ def plot_precision():
 
 plot_precision()
 
-# Local explanation using GradientBoosting feature importances (no shap)
+# Local explanation using GradientBoosting feature importances 
 gbr = xgb
 gbr.fit(X_train, y_train)
 feature_names = X.columns.tolist()
@@ -222,7 +221,7 @@ def get_credicoach_advice(risk_score, top_factors, approval_status):
         steps = [f"Improve {f}: reduce balances, negotiate rates, or make timely payments." for f in top_factors]
         return f"Rejected — Main issues: {', '.join(top_factors)}. Suggested steps: {steps[0]} {steps[1]} {steps[2]}"
 
-# --- INTERACTIVE USER INPUT SECTION ---
+# User Input
 print("\n" + "="*60)
 print("CREDICOACH - INTERACTIVE LOAN APPLICATION ASSESSMENT")
 print("="*60)
@@ -359,3 +358,4 @@ except ValueError as e:
     print(f"\nError: Invalid input. Please enter valid numbers. {e}")
 except Exception as e:
     print(f"\nError processing application: {e}")
+
