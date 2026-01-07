@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  credicoach:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FAST_MODE=1
+    volumes:
+      - .:/app

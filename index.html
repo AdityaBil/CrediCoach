@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CrediCoach — Loan Assessment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-light">
+  <main class="container">
+    <div class="bg-aurora" aria-hidden="true"></div>
+
+    <header class="header">
+      <div>
+        <h1>CrediCoach</h1>
+        <p class="subtitle">Smart credit insights for faster, safer lending</p>
+      </div>
+      <div class="header-right">
+        <button type="button" id="themeToggle" class="chip">☾ Theme</button>
+        <div class="logo">CC</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="pill">Finance · AI risk intelligence</div>
+        <h2>Your Financial Future Starts Here</h2>
+        <p class="subtitle">Assess borrowers with ML-driven credit risk scoring, actionable advice, and real-time insights tailored for lending teams.</p>
+        <div class="cta-row">
+          <button type="button" class="primary">Get started for free</button>
+          <button type="button" class="ghost" id="heroExampleBtn">Use Example</button>
+        </div>
+        <div class="cred-row">
+          <span>🔒 Bank-grade security</span>
+          <span>⚡ Instant scoring</span>
+          <span>📈 Real-time factors</span>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card float">
+          <div class="stat-head">Total visits</div>
+          <div class="stat-value">325k</div>
+          <div class="stat-trend up">+18.34%</div>
+        </div>
+        <div class="stat-card float delay">
+          <div class="stat-head">Real-time customers</div>
+          <div class="stat-value">1,027</div>
+          <div class="stat-trend up">+12.75%</div>
+        </div>
+        <div class="stat-card pill-card">
+          <div class="stat-head">Risk score live</div>
+          <div class="meter">
+            <div class="meter-fill"></div>
+          </div>
+          <div class="stat-foot">72% low-risk segment</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="card card-main">
+        <h2 class="card-title">Borrower profile</h2>
+        <p class="card-subtitle">Tell CrediCoach about the applicant. Fields with * are required.</p>
+
+        <form id="appForm" novalidate>
+          <div class="grid">
+            <label>
+              Monthly Income ($)*
+              <input name="monthly_income" type="number" step="0.01" value="3000" required>
+              <span class="field-error" data-error-for="monthly_income"></span>
+            </label>
+            <label>
+              Credit Score (300–850)*
+              <input name="credit_score" type="number" min="300" max="850" value="650" required>
+              <span class="field-error" data-error-for="credit_score"></span>
+            </label>
+            <label>
+              Loan Amount ($)*
+              <input name="loan_amount" type="number" step="0.01" value="5000" required>
+              <span class="field-error" data-error-for="loan_amount"></span>
+            </label>
+            <label>
+              Loan Duration (months)*
+              <input name="loan_duration" type="number" min="6" max="120" value="36" required>
+              <span class="field-error" data-error-for="loan_duration"></span>
+            </label>
+            <label>
+              Total Monthly Debt Payments ($)*
+              <input name="total_debt_payments" type="number" step="0.01" value="500" required>
+              <span class="field-error" data-error-for="total_debt_payments"></span>
+            </label>
+            <label>
+              Payment History (0–60)*
+              <input name="payment_history" type="number" min="0" max="60" value="30" required>
+              <span class="field-error" data-error-for="payment_history"></span>
+            </label>
+            <label>
+              Credit Card Utilization (0–1)*
+              <input name="credit_card_utilization" type="number" step="0.01" min="0" max="1" value="0.2" required>
+              <span class="field-error" data-error-for="credit_card_utilization"></span>
+            </label>
+            <label>
+              Checking Balance ($)
+              <input name="checking_balance" type="number" value="1000">
+              <span class="field-error" data-error-for="checking_balance"></span>
+            </label>
+            <label>
+              Savings Balance ($)
+              <input name="savings_balance" type="number" value="500">
+              <span class="field-error" data-error-for="savings_balance"></span>
+            </label>
+            <label>
+              Total Assets ($)
+              <input name="total_assets" type="number" value="5000">
+              <span class="field-error" data-error-for="total_assets"></span>
+            </label>
+            <label>
+              Total Liabilities ($)
+              <input name="total_liabilities" type="number" value="1000">
+              <span class="field-error" data-error-for="total_liabilities"></span>
+            </label>
+            <label>
+              Length of Credit History (years)
+              <input name="length_credit_history" type="number" min="0" max="40" value="5">
+              <span class="field-error" data-error-for="length_credit_history"></span>
+            </label>
+            <label>
+              Bankruptcy History (0 = No, 1 = Yes)
+              <input name="bankruptcy_history" type="number" min="0" max="1" value="0">
+              <span class="field-error" data-error-for="bankruptcy_history"></span>
+            </label>
+            <label>
+              Previous Loan Defaults (0 = No, 1 = Yes)
+              <input name="previous_defaults" type="number" min="0" max="1" value="0">
+              <span class="field-error" data-error-for="previous_defaults"></span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submitBtn">Assess</button>
+            <button type="button" id="exampleBtn" class="alt">Use Example</button>
+            <div id="formError" class="form-error" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+
+      <section class="side-column">
+        <section id="results" class="results hidden card">
+          <div class="results-head">
+            <div>
+              <h2>Results</h2>
+              <p class="card-subtitle">Predicted risk and recommendation for this application.</p>
+            </div>
+            <div id="spinner" class="spinner hidden" aria-hidden="true"></div>
+          </div>
+          <div class="result-grid">
+            <div>
+              <strong>Risk Score</strong>
+              <div class="metric" id="risk"></div>
+            </div>
+            <div>
+              <strong>Application Status</strong>
+              <div class="metric" id="status"></div>
+            </div>
+            <div class="wide">
+              <strong>Top Factors</strong>
+              <div id="factors"></div>
+            </div>
+          </div>
+          <div class="advice-box">
+            <strong>Personalized Advice</strong>
+            <p id="advice"></p>
+          </div>
+        </section>
+
+        <section class="card history-card">
+          <div class="results-head">
+            <div>
+              <h2>Recent assessments</h2>
+              <p class="card-subtitle">Last few runs from this session.</p>
+            </div>
+            <button type="button" id="refreshHistory" class="chip">Refresh</button>
+          </div>
+          <div id="historyEmpty" class="history-empty">No assessments yet. Run one to see it here.</div>
+          <div class="history-table-wrapper">
+            <table id="historyTable" class="history-table">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Risk</th>
+                  <th>Status</th>
+                  <th>Income</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section class="card explain-card">
+      <div class="explain-grid">
+        <div>
+          <div class="pill">Understanding credit risk</div>
+          <h2>What is a credit risk score?</h2>
+          <p class="subtitle">A credit risk score estimates the likelihood a borrower repays on time. It blends factors like income stability, debt-to-income ratio, credit history, utilization, and payment behavior to gauge repayment capacity and willingness.</p>
+        </div>
+        <div>
+          <div class="pill neutral">How CrediCoach helps</div>
+          <ul class="feature-list">
+            <li>📊 ML ensembles for balanced, explainable scoring.</li>
+            <li>⚙️ Auto-derived factors (DTI, utilization, assets/liabilities) to standardize inputs.</li>
+            <li>🧭 Instant advice: approval readiness, improvement steps, and sustaining tips.</li>
+            <li>🔄 Session history for quick comparisons across scenarios.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

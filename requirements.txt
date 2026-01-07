@@ -1,0 +1,10 @@
+flask
+pandas
+numpy
+scikit-learn
+scikeras
+tensorflow
+matplotlib
+seaborn
+genai
+flask-cors
