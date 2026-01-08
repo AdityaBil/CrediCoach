@@ -1,3 +1,11 @@
+FROM node:18-alpine AS frontend-builder
+
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . .
+RUN npm run build
+
 FROM python:3.11-slim
 
 WORKDIR /app
@@ -14,6 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV FAST_MODE=1
 
 COPY . .
+COPY --from=frontend-builder /app/dist ./dist
 
 EXPOSE 5000
 CMD ["python", "server.py"]
