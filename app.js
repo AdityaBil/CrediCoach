@@ -15,7 +15,7 @@ const historyEmpty = document.getElementById('historyEmpty');
 const heroExampleBtn = document.getElementById('heroExampleBtn');
 
 // Base URL for the Flask API (always target the backend on port 5000)
-const API_BASE ='http://127.0.0.1:5000';
+const API_BASE ='';
 
 // Theme toggle (simple light/dark)
 themeToggle?.addEventListener('click', () => {
@@ -245,4 +245,5 @@ refreshHistoryBtn.addEventListener('click', () => {
 
 // Initial history load (if any) on page open
 loadHistory();
+
 
